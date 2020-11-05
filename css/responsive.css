@@ -1,0 +1,78 @@
+@media only screen and (max-width: 750px){
+    .nav .nav-menu, .nav .nav-items{
+        flex-direction: column!important;
+    }
+    .nav .toggle-collapse{
+        display: initial;
+    }
+    main .site-content{
+        grid-template-columns: 100%;
+    }
+    footer.footer .container{
+        grid-template-columns: repeat(1,1fr)!important;
+        /* justi/fy-content: center; */
+    }
+    .body-content .recommend-posts .posts{
+        grid-template-columns: 100%;
+    }
+    .body-content .recommend-posts .container{
+        margin: auto!important;
+    }
+    .body-content .top-accomodate .card-list{
+        grid-template-columns: 100%;
+    }
+    .body-content .top-accomodate .card-list .card img{
+        margin: auto!important;
+    }
+    .body-content .top-accomodate .container{
+        margin: auto!important;
+    }
+    .body-content .recent-post .recent-post-list{
+        grid-template-columns: 100%;
+    }
+    .body-content .recent-post .container{
+        margin: auto!important;
+    }
+    nav .toggle-collapse{
+        width: 80% !important;
+    }
+}
+@media only screen and (max-width: 1130px){
+    nav .toggle-collapse{
+        width: 80% !important;
+    }
+    .nav .nav-menu, .nav .nav-items{
+        flex-direction: column!important;
+    }
+    .nav .toggle-collapse{
+        display: initial;
+    }
+    main .site-content{
+        grid-template-columns: repeat(2,1fr);
+    }
+    footer.footer .container{
+        grid-template-columns:repeat(2,1fr)!important;
+        /* justi/fy-content: center; */
+    }
+    .body-content .recommend-posts .posts{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .body-content .recommend-posts .container{
+        margin: auto!important;
+    }
+    .body-content .top-accomodate .card-list{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .body-content .top-accomodate .card-list .card img{
+        margin: auto!important;
+    }
+    .body-content .top-accomodate .container{
+        margin: auto!important;
+    }
+    .body-content .recent-post .recent-post-list{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .body-content .recent-post .container{
+        margin: auto!important;
+    }
+}
