@@ -7,6 +7,7 @@ footer.footer{
 footer.footer .container{
     display:grid;
     grid-template-columns: 25% 25% 25% 25%;
+    grid-gap:1rem
     /* 1fr 1fr 1fr 1fr/ repeat(4,1fr) */
 
 }

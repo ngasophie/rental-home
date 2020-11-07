@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/carousel.css">
     <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/user.css">
     <link rel="stylesheet" href="./css/responsive.css">
     <title>Document</title>
 </head>
@@ -29,7 +30,7 @@
         <nav class="nav">
             <div class="nav-menu flex-row">
                 <div class="nav-brand">
-                    <a href="#" class="text-gray">EA</a>
+                    <a href="index.html" class="text-gray">EA</a>
                 </div>
                 <div class="toggle-collapse">
                     <div class="toggle-icons">
@@ -39,28 +40,93 @@
                 <div class="social text-gray">
                     <ul class="nav-items">
                         <li class="nav-link">
-                            <a href="">Home</a>
+                            <a href="index.html">Home</a>
                         </li>
                         <li class="nav-link">
-                            <a href="">Category</a>
+                            <a href="listPost.html">Posts</a>
                         </li>
                         <li class="nav-link">
-                            <a href="">Archive</a>
+                            <a href="listOwner.html">Owners</a>
                         </li>
                         <li class="nav-link">
-                            <a href="">Pages</a>
+                            <a href="detailsPage.html">Contact us</a>
                         </li>
                         <li class="nav-link">
-                            <a href="">Contact us</a>
-                        </li>
-                        <li class="nav-link">
-                            <a href="">Sign In</a>
+                            <a id="signIn"data-target="#myModal" data-toggle="modal">Sign In</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- ------------------------Navigation--------------- -->
+        <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+                <div class="user-form" >
+                    <div class="form-box">
+                        <i class="fas fa-times"  id="close-1" data-dismiss="modal" aria-label="Close"></i>
+                        <div class="btn-box">
+                            <div class="btn-box-color">
+                                <button class="btn-register">Register</button>
+                                <button class="btn-login active">Login</button>
+                            </div>
+                        </div>
+                        <div class="icon-box">
+                            <img src="./images/social_icon/fb.png" alt="">
+                            <img src="./images/social_icon/lk.png" alt="" srcset="">
+                            <img src="./images/social_icon/tw.png" alt="">
+                        </div>
+                        <form class="form" id="form-login">
+                            <input type="email" class="email" name="email" placeholder="Email" required>
+                            <small class="email-error error-disable" >error</small>
+                            <input type="password" class="password" name="password" placeholder="Password" required>
+                            <small class="password-error error-disable">error</small>
+                            <div class="check-box">
+                                <input type="checkbox"id="remember-password" class="check-box-input" name="remember" required>
+                                <span>Remember your password</span>
+                            </div>
+                            <button type="submit" class="btn-submit">Login</button>
+                        </form>
+                    </div>
+            
+          </div>
+          <div class="user-form" >
+            <div class="form-box" data-aos="fade-down">
+                <i class="fas fa-times" id="close-2" data-dismiss="modal" aria-label="Close"></i>
+                <div class="btn-box">
+                    <div class="btn-box-color">
+                        <button class="btn-register active">Register</button>
+                        <button class="btn-login">Login</button>
+                    </div>
+                </div>
+                <div class="icon-box">
+                    <img src="./images/social_icon/fb.png" alt="">
+                    <img src="./images/social_icon/lk.png" alt="" srcset="">
+                    <img src="./images/social_icon/tw.png" alt="">
+                </div>
+                <form class="form" id="form-register">
+                    <input type="text" class="name" name="name" placeholder="User name" required>
+                    <small class="name-error error-disable" >error</small>
+                    <input type="email" class="email" name="email" placeholder="Email"  required>
+                    <small class="email-error error-disable" >error</small>
+                    <input type="password" class="password" name="password" placeholder="Password" required>
+                    <small class="password-error error-disable">error</small>
+                    <input type="password" class="password" name="password-cf" placeholder="Confirm your password" required>
+                    <small class="password-cf-error error-disable">error</small>
+                    <div class="check-box">
+                        <input type="checkbox"id="agree" class="check-box-input" name="remember">
+                        <span>I agree the conditon</span>
+                    </div>
+                    <button type="submit" class="btn-submit">Register</button>
+                </form>
+            </div>
+        </div>
+        </div>
+        <!-- user-form -->
+      
+       
+        <!-- user-form -->
         <!-- body -->
     <section class="body-content">
         <section class="body-title" data-aos="zoom-in-right">
@@ -68,7 +134,29 @@
             <div class="body-title-text">
                 <h3  data-aos="fade-up">EA</h3>
                 <h1  data-aos="fade-up">Find accomodate easy than ever </h1>
-                <button  data-aos="fade-up" class="btn btn-warning">Explore</button>
+               <div class="search-box">
+                   <select name="location" id="">
+                       <option value="">Location</option>
+                       <option value="">Ha noi</option>
+                   </select>
+                   <select name="type" id="">
+                       <option value="">Property type</option>
+                       <option value="">Ha noi</option>
+                   </select>
+                   <select name="beds" id="">
+                       <option value="">Beds</option>
+                       <option value="">Ha noi</option>
+                   </select>
+                   <select name="price" id="">
+                       <option value="">Any price</option>
+                       <option value="">Ha noi</option>
+                   </select>
+                   <select name="area" id="">
+                       <option value="">Area</option>
+                       <option value="">Ha noi</option>
+                   </select>
+                   <button>Search</button>
+               </div>
             </div>
         </section>
         <div  data-aos="fade-up" class="recommend">

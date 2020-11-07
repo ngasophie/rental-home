@@ -8,10 +8,10 @@
 .text-grey{
     color: var(--text-gray)
 }
-.container{
+/* .container{
     margin: 0 5vw ;
     overflow: hidden;
-}
+} */
 /* navigation */
 .nav{
     background: #ffffff;
@@ -25,13 +25,15 @@
     font-size: 1.6rem;
     padding: 1rem 0;
     display: block;
+    cursor: pointer;
 }
 p{
     font-size: 1rem;
 }
 a{
     text-decoration: none;
-    color:#093863
+    color:#093863;
+    cursor: pointer;
 }
 h1{
     font-size: 2.5rem;
