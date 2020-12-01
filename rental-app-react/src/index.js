@@ -3,26 +3,27 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import animation from './animation';
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
+import animation from './Resource/animation';
 import AOS from 'aos';
-import './css/style.css'
-import './css/details.css'
-import './css/footer.css'
-import './css/listPost.css'
-import './css/main.css'
-import './css/nav.css'
-import './css/user.css'
+import './Resource/css/style.css'
+import './Resource/css/details.css'
+import './Resource/css/footer.css'
+import './Resource/css/listPost.css'
+import './Resource/css/main.css'
+import './Resource/css/nav.css'
+import './Resource/css/user.css'
 // import './css/carousel.css'
-import './css/dashboard.css'
-import './css/responsive_dashboard.css'
-import './css/responsive.css';
+import './Resource/css/dashboard.css'
+import './Resource/css/responsive_dashboard.css'
+import './Resource/css/responsive.css';
 // import "~slick-carousel/slick/slick.css"; 
 // import "~slick-carousel/slick/slick-theme.css";
 
 // ..
 import {createStore, applyMiddleware} from 'redux';
-import appReducers from './reducers/index';
+import appReducers from './Resource/reducers/index';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 AOS.init();

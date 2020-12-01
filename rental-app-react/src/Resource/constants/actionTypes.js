@@ -1,0 +1,10 @@
+export const FETCH_RECOMMEND_POSTS = 'FETCH_RECOMMEND_POSTS';
+export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
+export const CURRENT_PAGE = 'CURRENT_PAGE';
+export const FETCH_ALL_OWNER = 'FETCH_ALL_OWNER';
+export const FETCH_ONE_POST = 'FETCH_ONE_POST';
+export const FETCH_LOCATION = 'FETCH_LOCATION';
+export const ADD_RENTER = 'ADD_RENTER';
+export const IMG_SRC = 'IMG_SRC';
+export const LOGIN = 'LOGIN';
+export const LAST_PAGE_ALL_POST = 'LAST_PAGE_ALL_POST';
