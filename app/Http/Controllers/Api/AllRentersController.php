@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Renter;
+use Illuminate\Support\Facades\Hash;
 class AllRentersController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class AllRentersController extends Controller
      */
     public function index()
     {
-        $result = Renter::all();
+        $result = Renter::paginate(2);
         return $result;
     }
 
@@ -39,7 +40,7 @@ class AllRentersController extends Controller
         $renter = new Renter();
         $renter -> name = $request ->name;
         $renter -> email = $request -> email;
-        $renter -> password = $request -> password;
+        $renter -> password = $request->password;
         $renter ->save();
     }
 
@@ -74,7 +75,7 @@ class AllRentersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

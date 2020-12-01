@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Renter extends Model
+class React extends Model
 {
-    protected $table = 'renters';
+    //
+    protected $table = 'reacts';
 }

@@ -22,5 +22,11 @@ Route::get('/category/create', 'Api\CategoryController@create');
 Route::post('/category/store', 'Api\CategoryController@store')->name('form.store');
 Route::get('/upload', 'UploadController@create');
 Route::post('/postUpload', 'UploadController@store')->name('form.postUpload');
-Route::get('/all-posts','Api\AllPostsController@index');
 // Route::post('/all-renters/store','Api\AllRentersController@store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

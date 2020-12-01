@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Type;
+use App\Review;
+use App\User;
+use App\Http\Controllers\Api\ReviewsController;
+use DB;
 class AllPostsController extends Controller
 {
     /**
@@ -14,9 +19,11 @@ class AllPostsController extends Controller
      */
     public function index()
     {
-        //get all post
-        $result = Post::all();
-        return $result;
+        //  get all-post paginate 9 post
+        $posts = Post::with('type','address','facilities','react','images','reviews')
+        -> where('status','!=',0) ->paginate(9);
+        // ->get();
+        return $posts;
     }
 
     /**
@@ -48,7 +55,13 @@ class AllPostsController extends Controller
      */
     public function show($id)
     {
-        //
+        //  show detail post
+        $post = Post::with('type','address','facilities','react','images','reviews','user')
+        -> where('id','=',$id)
+        ->get();
+        // $review= Review::with('owner')->get();
+        return $post;
+
     }
 
     /**
