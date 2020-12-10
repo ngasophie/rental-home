@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import Title from './MainPageItems/MiddlePageItems/Title'
 import TopPage from './MainPageItems/TopPageItems/TopPage';
 import Footer from './MainPageItems/Footer/Footer';
-import FormProfile from './MainPageItems/MiddlePageItems/FormProfile'
+import FormProfile from './MainPageItems/MiddlePageItems/FormProfile';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 class Profile extends Component{
     constructor(props){
         super(props);
@@ -22,4 +24,9 @@ class Profile extends Component{
         );
     }
 }
-export default Profile;
+const mapStateToProps= state =>{
+    return {
+        owner:state.owner
+    }
+}
+export default connect(mapStateToProps,null) (Profile);

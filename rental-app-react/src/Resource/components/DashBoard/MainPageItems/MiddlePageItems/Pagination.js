@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {currentPage} from './../../../../actions/index'
+import {currentPage} from './../../../../actions/index';
+import {allPostPerOwnerRequest, activePostPerOwnerRequest, disablePostPerOwnerRequest
+} from './../../../../actions/dashboardAction/getAction';
 class Pagination extends Component{
   static pageNumbers=0;
   static current =1;
@@ -9,18 +11,30 @@ class Pagination extends Component{
         super(props);
         this.state = {
           currentPage:1,
-          itemsPerPage:5,
-      
         }
     }
     handleClickNext = ( event) =>{
       let currentPage = this.state.currentPage;
       if(currentPage < Pagination.pageNumbers){
         currentPage = currentPage+1;
+        const {url,owner} = this.props
+
         this.props.getCurrentPage(currentPage);
-      }
+        if(url === '/dashboard/all-posts'){
+          this.props.allPostPerOwner(currentPage)
+
+        }
+        else if(url === '/dashboard/active-posts'){
+          this.props.activePostPerOwner(currentPage)
+
+        }
+        else if(url === '/dashboard/disable-posts'){
+          this.props.diasblePostPerOwner(currentPage)
+
+        }      }
       this.setState({
-        currentPage
+        currentPage,
+    
       });
     }
     handleClickPrev = (event) =>{
@@ -28,6 +42,19 @@ class Pagination extends Component{
       if(currentPage >=2){
         currentPage = currentPage-1;
         this.props.getCurrentPage(currentPage);
+        const {url,owner} = this.props
+        if(url === '/dashboard/all-posts'){
+          this.props.allPostPerOwner(currentPage)
+
+        }
+        else if(url === '/dashboard/active-posts'){
+          this.props.activePostPerOwner(currentPage)
+
+        }
+        else if(url === '/dashboard/disable-posts'){
+          this.props.diasblePostPerOwner(currentPage)
+
+        }
       }
       this.setState({
         currentPage
@@ -36,10 +63,16 @@ class Pagination extends Component{
     render(){
       const {url} = this.props
       const {currentPage} = this.state;
+      if(url === '/dashboard/active-posts'){
+        Pagination.pageNumbers = this.props.lastPageActivePost;
+      }
+      else if(url === '/dashboard/disable-posts'){
+        Pagination.pageNumbers = this.props.lastPageDisablePost;
+      }
+      else{
+        Pagination.pageNumbers = this.props.lastPageAllPostDashboard;
+      }
       Pagination.current = currentPage;
-      const {itemsPerPage} = this.state
-      const {allPosts} = this.props;
-      Pagination.pageNumbers = Math.ceil(allPosts.length / itemsPerPage)
       let linkCurrent = `${url}/page-${currentPage}`;
       let nextPage ;
       let prevPage;
@@ -80,7 +113,10 @@ class Pagination extends Component{
 }
 const mapStateToProps = state =>{
   return{
-    allPosts: state.allPosts
+    lastPageAllPostDashboard:state.lastPageAllPostDashboard,
+    lastPageActivePost:state.lastPageActivePost,
+    lastPageDisablePost:state.lastPageDisablePost,
+    owner:state.owner
   }
 }
 const mapDispatchToProps  = (dispatch, props)=>{
@@ -88,7 +124,16 @@ const mapDispatchToProps  = (dispatch, props)=>{
     getCurrentPage : (current) =>{
         //  luu vao store
         dispatch(currentPage(current))
-    }
+    },
+    allPostPerOwner :(number) =>{
+      dispatch(allPostPerOwnerRequest(number))
+  },
+    activePostPerOwner :(number) =>{
+      dispatch(activePostPerOwnerRequest(number))
+  },
+    diasblePostPerOwner :(number) =>{
+      dispatch(disablePostPerOwnerRequest(number))
+  }
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps) (Pagination);

@@ -6,47 +6,54 @@ import React, {Component} from 'react';
 import {Route, Link} from 'react-router-dom';
 const menus = [
   {
-    name:'Dashboard',
+    name:' Dashboard',
     to :'/dashboard/main-page',
-    exact:true
+    exact:true,
+    icon:<i class="fas fa-signal" aria-hidden="true"></i>
   },
   {
-    name:'Profile',
+    name:' Profile',
     to:'/dashboard/profile',
-    exact:false
+    exact:false,
+    icon:<i class="fas fa-user-alt" aria-hidden="true"></i>
   },
+  // {
+  //   name:'Recent posts',
+  //   to:'/dashboard/recent-posts',
+  //   exact:false
+  // },
   {
-    name:'Recent posts',
-    to:'/dashboard/recent-posts',
-    exact:false
-  },
-  {
-    name:'Active posts',
+    name:' Active posts',
     to:'/dashboard/active-posts',
-    exact:false
+    exact:false,
+    icon:<i class="fas fa-check-circle" aria-hidden="true"></i>
   },
   {
-    name:'Disable posts',
+    name:' Disable posts',
     to:'/dashboard/disable-posts',
-    exact:false
+    exact:false,
+    icon:<i class="fas fa-times-circle" aria-hidden="true"></i>
   },
+  // {
+  //   name:' Reviews',
+  //   to:'/dashboard/reviews',
+  //   exact:false,
+  //   icon:<i class="fas fa-comment-dots" aria-hidden="true"></i>
+  // },
   {
-    name:'Reviews',
-    to:'/dashboard/reviews',
-    exact:false
-  },
-  {
-    name:'All posts',
+    name:' All posts',
     to:'/dashboard/all-posts',
-    exact:false
+    exact:false,
+    icon:<i class="fas fa-globe" aria-hidden="true"></i>
   },
   {
-    name:'Chat',
+    name:' Chat',
     to:'/dashboard/chat',
-    exact:false
+    exact:false,
+    icon:<i class="fas fa-comments" aria-hidden="true"></i>
   },
 ];
-const MenuLink = ({label, to , activeOnlyExact}) =>{
+const MenuLink = ({label, to , activeOnlyExact,icon}) =>{
   return (
     <Route
       path={to}
@@ -55,7 +62,7 @@ const MenuLink = ({label, to , activeOnlyExact}) =>{
         let active = match ? 'active' : '';
         return (
                 <Link to={to}>
-                    <i className="fas fa-comments"></i>
+                    {icon}
                     {label}
                 </Link>                 
         )
@@ -90,6 +97,7 @@ class Nav extends Component {
               label = {menu.name}
               to = {menu.to}
               activeOnlyExact = {menu.exact}
+              icon = {menu.icon}
             />
           )
         })

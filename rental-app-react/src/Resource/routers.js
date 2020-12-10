@@ -3,7 +3,6 @@ import MainPage from './components/MainPage/MainPage';
 import ListPostPage from './components/MainPage/ListPostPage';
 import OwnerPage from './components/MainPage/OwnerPage';
 import Login from './components/MainPage/LoginPage';
-import OwnerLogin from './components/DashBoard/Login';
 import Register from './components/MainPage/RegisterPage';
 import NotFoundPage from './components/MainPage/NotFoundPage';
 import Dashboard from './components/DashBoard/Dashboard';
@@ -12,10 +11,10 @@ import RecentPosts from './components/DashBoard/RecentPosts';
 import ActivePosts from './components/DashBoard/ActivePosts';
 import DisablePosts from './components/DashBoard/DisablePosts';
 import Chat from './components/DashBoard/Chat';
-import Reviews from './components/DashBoard/Reviews';
 import AllPosts from './components/DashBoard/AllPosts';
 import AddPostPage from './components/DashBoard/AddPostPage';
 import DetailPage from './components/MainPage/DetailPage';
+import Details from './components/DashBoard/DetailPage';
 const routes = [
     {
         path:'/',
@@ -78,11 +77,6 @@ const routes = [
         main:() => <DisablePosts/>
     },
     {
-        path:'/dashboard/reviews',
-        exact:false,
-        main:() => <Reviews/>
-    },
-    {
         path:'/dashboard/all-posts',
         exact:false,
         main:() => <AllPosts/>
@@ -96,6 +90,11 @@ const routes = [
         path:'/dashboard/add-post-page',
         exact:false,
         main:() => <AddPostPage/>
+    },
+    {
+        path:'/dashboard/view-post/:id',
+        exact:false,
+        main:({match, history}) => <Details match={match} history={history}/>
     },
     // {
     //     path:'/product/add',

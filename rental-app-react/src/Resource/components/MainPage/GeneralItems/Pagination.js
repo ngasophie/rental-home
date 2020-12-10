@@ -14,11 +14,14 @@ class Pagination extends Component{
         }
     }
     handleClickNext = ( event) =>{
+      const {url} = this.props
+
       let currentPage = this.state.currentPage;
       if(currentPage < Pagination.pageNumbers){
         currentPage = currentPage+1;
         this.props.getCurrentPage(currentPage);
-        this.props.fetchAllPosts(currentPage)
+        this.props.fetchAllPosts(currentPage);
+        // ? allOwner
       }
       this.setState({
         currentPage,

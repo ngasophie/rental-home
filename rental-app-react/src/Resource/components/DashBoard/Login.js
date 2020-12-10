@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import { validateEmail } from '../../utils/validate';
 import * as Config from './../../constants/Config';
 import axios from 'axios';
+import { actDispatchIdUser } from '../../actions/dashboardAction/getAction';
 class Login extends Component{
     constructor(props){
         super(props);
@@ -12,7 +13,7 @@ class Login extends Component{
             password:"",
             emailEr : '',
             passwordEr:'',
-            role:1
+            role:1,
         }
     }
     onChange = (event) =>{
@@ -58,17 +59,19 @@ class Login extends Component{
             data: {email,password,role},
             }).then(res=>{
                 if(res){
-                    localStorage.setItem('owner-login',res.data.access_token);
+                    console.log(res)
+                    sessionStorage.setItem('owner/admin-login',res.data.access_token);
                     this.setState({
-                        email:""
+                        email:"",
                     })
+                    this.props.dispatchIdUser(res.data.user);
                 }})
             .catch(err =>{
                 console.log(err)
             })
         }
     render(){
-        if(localStorage.getItem('owner-login')){
+        if(sessionStorage.getItem('owner/admin-login')){
             return <Redirect to='/dashboard/main-page'  />
         }
         return(
@@ -105,4 +108,11 @@ class Login extends Component{
          )
     }
 }
-export default Login;
+const mapDispatchToProps = (dispatch, props) =>{
+    return{
+        dispatchIdUser:(owner) =>{
+            dispatch(actDispatchIdUser(owner))
+        }
+    };
+}
+export default connect(null, mapDispatchToProps) (Login);

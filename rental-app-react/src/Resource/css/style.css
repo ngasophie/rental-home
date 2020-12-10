@@ -310,3 +310,21 @@ button{
 .owner-infor .name{
     margin-left: 1rem;
 }
+.hover-mouse{
+    cursor:pointer;
+}
+.btn-save-change{
+    width:150px;
+    height:50px;
+    outline:none;
+    border: none;
+    color:#FFF;
+    background-color: #0069D9;
+    border-radius:5px;
+}
+.dash-board-page  small{
+    color:red;
+}
+.dash-board-page .error{
+    border:1px solid red;
+}

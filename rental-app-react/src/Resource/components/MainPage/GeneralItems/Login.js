@@ -41,7 +41,7 @@ class Login extends Component{
             data: {email,password},
             }).then(res=>{
                 if(res){
-                    localStorage.setItem('auth_token',res.data.access_token);
+                    sessionStorage.setItem('auth_token',res.data.access_token);
                     this.setState({
                         email:""
                     })
@@ -51,7 +51,7 @@ class Login extends Component{
             })
         }
     render(){
-        if(localStorage.getItem('auth_token')){
+        if(sessionStorage.getItem('auth_token')){
             return <Redirect to='/'  />
         }
         return(

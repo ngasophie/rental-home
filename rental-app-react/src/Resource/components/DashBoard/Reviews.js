@@ -17,7 +17,6 @@ class Reviews extends Component{
                 <div className="middle">
                     <div className="container">
                        <Title></Title>
-                        <button type="button" className="btn btn-primary mt-2 ml-1"><i className="fas fa-plus-circle"></i>  Add post</button>
                         <ReviewList></ReviewList>
                         <Pagination></Pagination>
                     </div>

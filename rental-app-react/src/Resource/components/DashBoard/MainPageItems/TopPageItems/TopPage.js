@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
+import { actDispatchIdUser } from './../../../../actions/dashboardAction/getAction';
 class TopPage extends Component{
     constructor(props){
         super(props)
     }
+    onClick = () =>{
+//  log out
+        sessionStorage.removeItem('owner/admin-login');
+        this.props.dispatchIdUser(null);
+    }
     render(){
+        let{owner, img_src} = this.props;
+        img_src= img_src.concat('avt');
         return(
             <div className="top">
             <div className="container">
@@ -18,15 +29,16 @@ class TopPage extends Component{
                 <div>
                     <i className="far fa-envelope"></i>
                 </div>
-                <div className="avt"><img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t1.0-9/121113918_1240366553030406_3719126809594846406_o.jpg?_nc_cat=110&ccb=2&_nc_sid=09cbfe&_nc_ohc=bLm3htN5sOcAX_21wxp&_nc_ht=scontent.fhan2-4.fna&oh=13a1fa2c8a5759ea0ce7142d173763e9&oe=5FCC4BFF" alt=""/></div>
+                <div className="avt"><img src={`${img_src}/${owner.img_src}`} alt=""/></div>
                 <div className="dropdown">
                     <button className="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     Nga Trinh
+                     {owner.name}
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a className="dropdown-item" href="#">Action</a>
-                      <a className="dropdown-item" href="#">Another action</a>
-                      <a className="dropdown-item" href="#">Something else here</a>
+                      <Link to ='/dashboard/profile' className="dropdown-item" >Profile details</Link>
+                      <button className="dropdown-item" onClick={this.onClick}>
+                         Log out
+                          </button>
                     </div>
                   </div>
             </div>
@@ -34,4 +46,17 @@ class TopPage extends Component{
         )
     }
 }
-export default TopPage;
+const mapStateToProps= state =>{
+    return {
+        owner:state.owner,
+        img_src:state.img_src
+    }
+}
+const mapDispatchToProps = (dispatch, props) =>{
+    return{
+        dispatchIdUser:(owner) =>{
+            dispatch(actDispatchIdUser(owner))
+        }
+    };
+}
+export default connect(mapStateToProps,mapDispatchToProps) (TopPage);

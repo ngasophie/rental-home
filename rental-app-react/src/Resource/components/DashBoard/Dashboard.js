@@ -1,28 +1,29 @@
 import React, {Component} from 'react';
-import Nav from './MainPageItems/Nav';
 import Title from './MainPageItems/MiddlePageItems/Title'
 import GridBoxList from './MainPageItems/MiddlePageItems/GridBoxList'
-import Pagination from './MainPageItems/MiddlePageItems/Pagination'
 import TableBordered from './MainPageItems/MiddlePageItems/TableBordered'
 import TopPage from './MainPageItems/TopPageItems/TopPage';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import { actFetchRecommendPostRequest,actFetchLocationRequest} from './../../actions/index';
+import { actFetchLocationRequest} from './../../actions/index';
+import {recentPostPerOwnerRequest, summaryPerOwnerRequest, userProfileRequest} from './../../actions/dashboardAction/getAction';
 import {
    Link
   } from "react-router-dom";
 class MainPage extends Component{
     constructor(props){
         super(props);
+       
 
     }
     render(){
-        const {recommendPosts} = this.props;
-        const recentPosts = recommendPosts.slice(16,26);
-        let token = localStorage.getItem('owner-login');
+        let token = sessionStorage.getItem('owner/admin-login');
         if(!token){
             return <Redirect to='/dashboard/login'  />
         }
+        const {recentPost,summary} = this.props;       
+        console.log(this.props)
+         if(!recentPost) return '';
         return(
             
             <div className="right-page">
@@ -30,37 +31,46 @@ class MainPage extends Component{
                 <div className="middle">
                     <div className="container">
                        <Title></Title>
-                         <GridBoxList></GridBoxList>
+                         <GridBoxList summary = {summary}></GridBoxList>
                         <Link to ='/dashboard/add-post-page'>
-                            <button type="button" className="btn btn-primary mt-2 ml-1"><i className="fas fa-plus-circle"></i>  Add post</button>
+                            <button type="button" className="btn-add"><i className="fas fa-plus-circle"></i>  Add post</button>
                         </Link>
-                        <TableBordered value = {recommendPosts}></TableBordered>
-                        <Pagination></Pagination>
+                        <TableBordered value = {recentPost}
+                        indexOfTable={0}
+                        ></TableBordered>
                     </div>
                 </div>
             </div>
         );
     }
     componentDidMount(){
-        this.props.fetchAllRecommendPosts();
+        this.props.fetchRecentPostPerOwner();
+        this.props.fetchSummaryPerOwner();
         this.props.fetchLocation();
     }
 }
 const mapStateToProps = state =>{
+    console.log(state)
 return {
-    recommendPosts:state.recommendPosts,
+    recentPost:state.recentPostPerOwner,
     dataLocation:state.dataLocation,
-    img_src:state.img_src
+    img_src:state.img_src,
+    owner:state.owner,
+    summary : state.summaryPerOwner
 }
 }
 const mapDispatchToProps = (dispatch, props)=>{
 return {
-    fetchAllRecommendPosts:() =>{
-        dispatch(actFetchRecommendPostRequest());
+    fetchRecentPostPerOwner:() =>{
+        dispatch(recentPostPerOwnerRequest());
+    },
+    fetchSummaryPerOwner:() =>{
+        dispatch(summaryPerOwnerRequest())
     },
     fetchLocation:() =>{
         dispatch(actFetchLocationRequest());
-    }
+    },
+    
 }
 }
 export default connect(mapStateToProps,mapDispatchToProps) (MainPage);

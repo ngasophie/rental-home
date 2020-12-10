@@ -9,6 +9,14 @@ import post from './post/post';
 import dataLocation from './location/data';
 import img_src from './img_src/img_src'
 import {lastPageAllPost} from './all_posts/all_posts';
+import owner from './dashboardReducer/owner_id';
+import recentPostPerOwner from './dashboardReducer/recentPostPerOwner';
+import summaryPerOwner from './dashboardReducer/summaryPerOwner';
+import {allPostPerOwner, activePostPerOwner, disablePostPerOwner,
+    lastPageAllPostDashboard,
+    lastPageActivePost,
+    lastPageDisablePost
+} from './dashboardReducer/postPerOwner';
 const appReducers = combineReducers({
     recommendPosts,
     allPosts,
@@ -18,6 +26,15 @@ const appReducers = combineReducers({
     dataLocation,
     img_src,
     lastPageAllPost,
-    lastPageAllOwner
+    lastPageAllOwner,
+    owner,
+    recentPostPerOwner,
+    summaryPerOwner,
+    allPostPerOwner,
+    activePostPerOwner,
+    disablePostPerOwner,
+    lastPageAllPostDashboard,
+    lastPageActivePost,
+    lastPageDisablePost
 })
 export default appReducers;

@@ -8,7 +8,7 @@ class FormSearch extends Component{
         return(
             <form className="form-inline">
             <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-            <Button outline color="success">success</Button>
+            <button class="btn-search">Search</button>
           </form>
         )
     }

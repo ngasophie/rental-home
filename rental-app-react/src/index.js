@@ -14,12 +14,9 @@ import './Resource/css/listPost.css'
 import './Resource/css/main.css'
 import './Resource/css/nav.css'
 import './Resource/css/user.css'
-// import './css/carousel.css'
 import './Resource/css/dashboard.css'
 import './Resource/css/responsive_dashboard.css'
 import './Resource/css/responsive.css';
-// import "~slick-carousel/slick/slick.css"; 
-// import "~slick-carousel/slick/slick-theme.css";
 
 // ..
 import {createStore, applyMiddleware} from 'redux';
