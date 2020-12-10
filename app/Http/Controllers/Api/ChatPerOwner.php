@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
-class RecommendsPost extends Controller
+
+class ChatPerOwner extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class RecommendsPost extends Controller
      */
     public function index()
     {
-        $posts = Post::with('type','address','facilities','react','images','reviews')
-        ->where('isRecommended','=' ,1)
-        ->get();
-        return $posts;
+        //
     }
 
     /**

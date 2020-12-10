@@ -15,7 +15,11 @@ class AuthController extends Controller
      * @return void
      */
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register','loginAsOwner']]);
+        $this->middleware('auth:api', ['except' => 
+        ['login', 'register',
+        'logout',
+        'logoutAsOwner',
+        'loginAsOwner']]);
     }
 
     /**
@@ -97,6 +101,11 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'User successfully signed out']);
     }
+    public function logoutAsOwner() {
+        auth()->logout();
+
+        return response()->json(['message' => 'User successfully signed out']);
+    }
 
     /**
      * Refresh a token.
@@ -127,7 +136,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
+            'expires_in' => auth()->factory()->getTTL() * 60*60,
             'user' => auth()->user()
         ]);
     }

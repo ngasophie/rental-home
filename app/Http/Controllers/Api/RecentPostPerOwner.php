@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
-class RecommendsPost extends Controller
+use DB;
+use Illuminate\Support\Facades\Auth;
+use JWTAuth;
+class RecentPostPerOwner extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +17,17 @@ class RecommendsPost extends Controller
      */
     public function index()
     {
-        $posts = Post::with('type','address','facilities','react','images','reviews')
-        ->where('isRecommended','=' ,1)
-        ->get();
-        return $posts;
+        // get recentpost per owner limit 5 
+        // // get recentpost per owner limit 5 where owner id = id
+        if(JWTAuth::parseToken()->authenticate()){
+            $id = (JWTAuth::parseToken()->authenticate())['id'];
+            $recentPosts = Post::with('address')
+            -> where('user_id','=',$id)
+            ->orderBy('created_at')->paginate(5);
+               return $recentPosts;
+        }
+        return $response() -> json('wrong token');
+
     }
 
     /**
@@ -49,7 +59,7 @@ class RecommendsPost extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**

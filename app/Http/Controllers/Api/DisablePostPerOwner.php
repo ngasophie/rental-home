@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
-class RecommendsPost extends Controller
+use JWTAuth;
+class DisablePostPerOwner extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,18 @@ class RecommendsPost extends Controller
      */
     public function index()
     {
-        $posts = Post::with('type','address','facilities','react','images','reviews')
-        ->where('isRecommended','=' ,1)
-        ->get();
-        return $posts;
+        //
+        if(JWTAuth::parseToken()->authenticate()){
+            $id = (JWTAuth::parseToken()->authenticate())['id'];
+             /// get disable post per owner
+            $recentPosts = Post::with('address')
+            -> where('user_id','=',$id)
+            ->where('status','=',0)
+            -> orderby('created_at')
+            ->paginate(5);
+            return $recentPosts;
+        }
+        return $response() -> json('wrong token');
     }
 
     /**
@@ -49,7 +58,7 @@ class RecommendsPost extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DB;
 use App\Post;
-class RecommendsPost extends Controller
+use JWTAuth;
+class ActivePostPerOwner extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +16,18 @@ class RecommendsPost extends Controller
      */
     public function index()
     {
-        $posts = Post::with('type','address','facilities','react','images','reviews')
-        ->where('isRecommended','=' ,1)
-        ->get();
-        return $posts;
+        //get active post per owner paginate 5
+        if(JWTAuth::parseToken()->authenticate()){
+            $id = (JWTAuth::parseToken()->authenticate())['id'];
+             // get active post per owner
+            $recentPosts = Post::with('address')
+            -> where('posts.user_id','=',$id)
+            ->where('posts.status','=',1)
+            -> orderby('posts.created_at')
+            ->paginate(5);
+            return $recentPosts;
+        }
+        return $response() -> json('wrong token');
     }
 
     /**
@@ -49,7 +59,7 @@ class RecommendsPost extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**

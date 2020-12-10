@@ -14,19 +14,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-//  create a renter
-Route::post('/all-renters/store','Api\AllRentersController@store');
-//  create user
-Route::post("/create-user", "UserController@createUser");
-//  login
-Route::post("/user-login", "Auth\LoginController@authenticate");
-//  detail user
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::get("/user-detail", "UserController@userDetail");
-});
+
 //  get all owner
 Route::get('/all-owners','Api\AllOwnersController@index');
 //  get all-posts
@@ -37,6 +25,19 @@ Route::get('/all-recommend-posts','Api\RecommendsPost@index');
 Route::get('/all-types','Api\TypeController@index');
 //  get post by id
 Route::get('/post/{id}','Api\AllPostsController@show');
+//  get recent post per owner
+Route::get('/owner/recent-posts','Api\RecentPostPerOwner@index');
+//  get active post per owner
+Route::get('/owner/active-posts','Api\ActivePostPerOwner@index');
+//  get disable post per owner
+Route::get('/owner/disable-posts','Api\DisablePostPerOwner@index');
+//  get all post per owner
+Route::get('/owner/all-posts','Api\AllPostsPerOwner@index');
+//  get profile details
+Route::get('/user-profile','Api\ProfileDetails@index');
+//  update profile
+Route::post('/user-profile/update','Api\ProfileDetails@update');
+
 
 
 Route::group([
@@ -57,7 +58,10 @@ Route::group([
 ], function ($router) {
     Route::post('/owner/login', [AuthController::class, 'loginAsOwner']);
     Route::post('/owner/register', 'AuthController@register');
-    Route::post('/owner/logout', [AuthController::class, 'logout']);
+    Route::post('/owner/logout', [AuthController::class, 'logoutAsOwner']);
     Route::post('/owner/refresh', [AuthController::class, 'refresh']);
     Route::get('/owner/user-profile', [AuthController::class, 'userProfile']);    
 });
+//  summary
+//  get summary per owner
+Route::get('/owner/summary','Api\SummaryController@index');
