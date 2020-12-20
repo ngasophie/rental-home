@@ -328,3 +328,21 @@ button{
 .dash-board-page .error{
     border:1px solid red;
 }
+.disabled{
+    background-color: #D4D4D4!important;
+}
+.btn-delete{
+    width:75px;
+    height:35px;
+    border:none;
+    outline:none;
+}
+.btn-primary{
+    height: 50px;
+    border:none;
+    outline:none;
+    border-radius:2px!important;
+    color:#FFF;
+    cursor: pointer;
+    text-align: center!important;
+}

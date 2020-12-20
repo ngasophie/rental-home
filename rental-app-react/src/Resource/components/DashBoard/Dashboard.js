@@ -13,8 +13,6 @@ import {
 class MainPage extends Component{
     constructor(props){
         super(props);
-       
-
     }
     render(){
         let token = sessionStorage.getItem('owner/admin-login');
@@ -37,6 +35,7 @@ class MainPage extends Component{
                         </Link>
                         <TableBordered value = {recentPost}
                         indexOfTable={0}
+                        onDeletePost = {this.onDeletePost}
                         ></TableBordered>
                     </div>
                 </div>
@@ -50,7 +49,6 @@ class MainPage extends Component{
     }
 }
 const mapStateToProps = state =>{
-    console.log(state)
 return {
     recentPost:state.recentPostPerOwner,
     dataLocation:state.dataLocation,

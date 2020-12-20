@@ -6,8 +6,10 @@ import {
 } from "react-router-dom";
 import React, {Component} from 'react';
 import DashboardPage from './Resource/components/DashboardPage';
+import AdminPage from './Resource/components/AdminPage';
 import IndexPage from './Resource/components/IndexPage';
 import Login from './Resource/components/DashBoard/Login';
+import AdminLogin from './Resource/components/Admin/Login';
 class App extends Component{
   constructor(props){
     super(props)
@@ -19,7 +21,9 @@ class App extends Component{
                 <Switch>
                   <Route exact  path="/" children={<IndexPage />} />
                   <Route exact  path="/dashboard/login" children={<Login />} />
+                  <Route exact  path="/dashboard/admin-login" children={<AdminLogin />} />
                   <Route exact  path="/dashboard/main-page" children={<DashboardPage />} />
+                  <Route exact  path="/dashboard/admin-page" children={<AdminPage />} />
                 </Switch>
             </Router>
           </div>

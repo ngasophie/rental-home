@@ -8,7 +8,7 @@ import TopPage from './MainPageItems/TopPageItems/TopPage';
 import Footer from './MainPageItems/Footer/Footer';
 import {disablePostPerOwnerRequest} from './../../actions/dashboardAction/getAction';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import {Redirect,Link} from 'react-router-dom';
 class DisablePosts extends Component{
     constructor(props){
         super(props);
@@ -25,7 +25,9 @@ class DisablePosts extends Component{
                 <div className="middle">
                     <div className="container">
                        <Title></Title>
-                        <button type="button" className="btn-add mt-1"><i className="fas fa-plus-circle"></i>  Add post</button>
+                       <Link to ='/dashboard/add-post-page'>
+                            <button type="button" className="btn-add mt-1"><i className="fas fa-plus-circle"></i>  Add post</button>
+                        </Link>                        
                         <TableBordered
                         value = {disablePost}
                         indexOfTable = {(this.props.currentPage-1)*5}

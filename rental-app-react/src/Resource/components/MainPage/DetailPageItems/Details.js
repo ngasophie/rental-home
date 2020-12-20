@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {convertDate} from './../../../utils/convertDate';
 class Details extends Component{
     constructor(props){
         super(props);
@@ -27,7 +28,7 @@ class Details extends Component{
                       {value.facilities.general_owner == true? <i className="fas fa-check-square"></i>:<i className="far fa-square"></i>}
                           <label htmlFor="am2"> General owner</label><br/>
                     </div>
-                  <span className="mb-1"><b>Created at:</b> {value.created_at}</span>
+                  <span className="mb-1"><b>Created at:</b> {convertDate(value.created_at)}</span>
               </div>
           </div>
           {/* <div className="amenities">

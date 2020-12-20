@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {convertDate} from './../../../utils/convertDate';
 class CardItem extends Component{
     constructor(props){
         super(props);
@@ -41,7 +42,7 @@ class CardItem extends Component{
                           <div className="details">
                               <div className="price"><i className="fas fa-dollar-sign"></i> {card.facilities.price} VND</div>
                               <div className="area"><i className="fas fa-arrows-alt" aria-hidden="true"></i> {card.facilities.area} m<sup><small>2</small></sup></div>
-                              <div className="date-modified"><i className="far fa-calendar-alt"></i> {card.createdAt}</div>
+                              <div className="date-modified"><i className="far fa-calendar-alt"></i> {convertDate(card.createdAt)}</div>
                               <div className="located"><i className="fas fa-location-arrow"></i> {card.address.city}</div>
                           </div>
                         </div>

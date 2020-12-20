@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {convertDate} from './../../../utils/convertDate';
 class Review extends Component{
     constructor(props){
         super(props);
@@ -15,7 +16,8 @@ class Review extends Component{
           <div className="right">
 
           <span className="name">{review.user_name}</span>
-          <span className="date-modified">{review.created_at}</span>
+          <br/>
+          <span className="date-modified">{convertDate(review.created_at)}</span>
           <div className="review-rate">
               <i className="fa fa-star" aria-hidden="true"></i>
               <i className="fa fa-star" aria-hidden="true"></i>

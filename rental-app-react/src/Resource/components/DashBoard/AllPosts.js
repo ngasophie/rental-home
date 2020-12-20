@@ -7,7 +7,7 @@ import TableBordered from './MainPageItems/MiddlePageItems/TableBordered'
 import TopPage from './MainPageItems/TopPageItems/TopPage';
 import Footer from './MainPageItems/Footer/Footer';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import {Redirect,Link} from 'react-router-dom';
 import {allPostPerOwnerRequest} from './../../actions/dashboardAction/getAction';
 class AllPosts extends Component{
     constructor(props){
@@ -25,7 +25,9 @@ class AllPosts extends Component{
                 <div className="middle">
                     <div className="container">
                        <Title></Title>
-                        <button type="button" className="btn-add mt-1"><i className="fas fa-plus-circle"></i>  Add post</button>
+                       <Link to ='/dashboard/add-post-page'>
+                            <button type="button" className="btn-add mt-1"><i className="fas fa-plus-circle"></i>  Add post</button>
+                        </Link>                        
                         <TableBordered
                         value={allPosts}
                          indexOfTable = {(this.props.currentPage-1)*5}

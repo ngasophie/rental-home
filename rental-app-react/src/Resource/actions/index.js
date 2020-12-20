@@ -68,8 +68,7 @@ export const actFetchAllOwners = (allOwners,lastPageAllOwner) =>{
 //  fetch 1 post
 export const fetchPostRequest = (id) =>{
     return(dispatch) =>{
-        return callApiBackEnd(`api/post/${id}`, 'GET', null).then(res=>{
-  
+        return callApiBackEnd(`api/post/${id}`, 'GET', null).then(res=>{  
             dispatch(fetchPost(res.data[0]))
         })
     }

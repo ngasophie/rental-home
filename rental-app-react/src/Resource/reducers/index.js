@@ -12,6 +12,11 @@ import {lastPageAllPost} from './all_posts/all_posts';
 import owner from './dashboardReducer/owner_id';
 import recentPostPerOwner from './dashboardReducer/recentPostPerOwner';
 import summaryPerOwner from './dashboardReducer/summaryPerOwner';
+import summaryManager from './adminReducer/summaryManager';
+import {allPostManager,activePostManager,disablePostManager,waitingPostManager,
+        lastActivePostManager,lastAllPostManager,lastDisablePostManager,lastWaitingPostManager
+} from './adminReducer/postManager';
+import recentPostManager from './adminReducer/recentPostManager';
 import {allPostPerOwner, activePostPerOwner, disablePostPerOwner,
     lastPageAllPostDashboard,
     lastPageActivePost,
@@ -35,6 +40,9 @@ const appReducers = combineReducers({
     disablePostPerOwner,
     lastPageAllPostDashboard,
     lastPageActivePost,
-    lastPageDisablePost
+    lastPageDisablePost,
+    allPostManager,activePostManager,disablePostManager,waitingPostManager,
+    lastActivePostManager,lastAllPostManager,lastDisablePostManager,lastWaitingPostManager,
+    summaryManager,recentPostManager
 })
 export default appReducers;

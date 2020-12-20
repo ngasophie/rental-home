@@ -14,8 +14,7 @@ class Details extends Component {
     }
     render() {
         const {post} = this.props;
-        if(!post.status) return'';
-        console.log(post)
+        if(!post.id) return'';
         return (
 
             <div className="right-page">
@@ -182,7 +181,7 @@ class Details extends Component {
                             </label>
                                         </div>
                                         <div className="form-check mr-1">
-                                            {post.status==0?<i class="far fa-square"></i>:<i class="fas fa-check-square"></i>} 
+                                            {post.remain==0?<i class="far fa-square"></i>:<i class="fas fa-check-square"></i>} 
                                         
                                             <label className="form-check-label" for="gridCheck">
                                                 Remain
