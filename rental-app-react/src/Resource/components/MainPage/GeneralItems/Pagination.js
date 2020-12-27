@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {currentPage} from './../../../actions/index'
-import {actFetchAllPostsRequest} from './../../../actions/index';
-
+import {actFetchAllPostsRequest, actFetchAllOwnersRequest} from './../../../actions/index';
+import { filterRequest } from '../../../actions/post_action';
 class Pagination extends Component{
   static pageNumbers=0;
   static current =1;
@@ -14,15 +14,23 @@ class Pagination extends Component{
         }
     }
     handleClickNext = ( event) =>{
-      const {url} = this.props
-
       let currentPage = this.state.currentPage;
       if(currentPage < Pagination.pageNumbers){
         currentPage = currentPage+1;
+        const {url} = this.props
+
         this.props.getCurrentPage(currentPage);
-        this.props.fetchAllPosts(currentPage);
-        // ? allOwner
-      }
+        if(url === '/list-post'){
+          this.props.fetchAllPosts(currentPage)
+
+        }
+        else if(url === '/list-owner'){
+          this.props.fetchAllOwner(currentPage)
+        }
+        else if(url === '/filter-post'){
+          this.props.filterPost(currentPage)
+
+        }      }
       this.setState({
         currentPage,
     
@@ -33,7 +41,19 @@ class Pagination extends Component{
       if(currentPage >=2){
         currentPage = currentPage-1;
         this.props.getCurrentPage(currentPage);
-        this.props.fetchAllPosts(currentPage)
+        const {url} = this.props
+        if(url === '/list-post'){
+          this.props.fetchAllPosts(currentPage)
+
+        }
+        else if(url === '/list-owner'){
+          this.props.fetchAllOwner(currentPage)
+
+        }
+        else if(url === '/filter-post'){
+          this.props.filterPost(currentPage)
+
+        }
       }
       this.setState({
         currentPage
@@ -42,10 +62,17 @@ class Pagination extends Component{
     render(){
       const {url} = this.props
       const {currentPage} = this.state;
+      const data = '';
+      if(this.state.data){
+        data = this.state.data
+      }
       if(url === '/list-owner'){
         Pagination.pageNumbers = this.props.lastPageAllOwner;
       }
-      else{
+      else  if(url === '/filter-post'){
+        Pagination.pageNumbers = this.props.lastFilterPage;
+      }
+      else if(url == '/list-post'){
         Pagination.pageNumbers = this.props.lastPageAllPost;
       }
       Pagination.current = currentPage;
@@ -88,10 +115,14 @@ class Pagination extends Component{
 
 }
 const mapStateToProps = state =>{
+  console.log(state);
   return{
     allPosts: state.allPosts,
     lastPageAllPost:state.lastPageAllPost,
-    lastPageAllOwner:state.lastPageAllOwner
+    lastPageAllOwner:state.lastPageAllOwner,
+    filterPosts:state.filterPosts,
+    lastFilterPage:state.lastFilterPage,
+    allOwner:state.allOwner
   }
 }
 const mapDispatchToProps  = (dispatch, props)=>{
@@ -102,7 +133,13 @@ const mapDispatchToProps  = (dispatch, props)=>{
     },
     fetchAllPosts :(number) =>{
       dispatch(actFetchAllPostsRequest(number))
-  }
+    },
+    filterPost:(data, number) =>{
+      dispatch(filterRequest(data,number))
+    },
+    fetchAllOwner:(number)=>{
+      dispatch(actFetchAllOwnersRequest(number))
+    }
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps) (Pagination);

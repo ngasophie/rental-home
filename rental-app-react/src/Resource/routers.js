@@ -26,6 +26,13 @@ import AdminChat from './components/Admin/Chat';
 import DetailManager from './components/Admin/DetailPage';
 import AdminAddPost from './components/Admin/AddPostPage';
 import WaitingPosts from './components/Admin/WaitingPosts';
+import AllOwnerManager from './components/Admin/ListOwners';
+import AllReview from './components/Admin/AllReviews';
+import MyPosts from './components/Admin/MyPosts';
+import FilterPage from './components/MainPage/FilterPage';
+import OwnerRegister from './components/DashBoard/Register';
+import ProfileDetails from './components/MainPage/ProfileDetail';
+import OwnerDetails from './components/MainPage/OwnerProfile';
 const routes = [
     {
         path:'/',
@@ -36,6 +43,11 @@ const routes = [
         path:'/list-post',
         exact:false,
         main:() => <ListPostPage/>
+    },
+    {
+        path:'/filter-post',
+        exact:false,
+        main:() => <FilterPage/>
     },
     {
         path:'/list-owner',
@@ -53,9 +65,19 @@ const routes = [
         main:({match, history}) => <Register history ={history} match ={match}/>
     },
     {
+        path:'/profile-detail',
+        exact:false,
+        main:({match, history}) => <ProfileDetails history ={history} match ={match}/>
+    },
+    {
+        path:'/owner-detail',
+        exact:false,
+        main:({match, history}) => <OwnerDetails history ={history} match ={match}/>
+    },
+    {
         path:'/dashboard/register',
         exact:false,
-        main:({match, history}) => <Register  history ={history} match ={match}/>
+        main:({match, history}) => <OwnerRegister  history ={history} match ={match}/>
     },
     {
         path:'/dashboard/main-page',
@@ -127,7 +149,8 @@ const routes = [
         path:'/dashboard/admin/all-posts',
         exact:false,
         main:() => <AdminAllPost/>
-    },
+    }
+    ,
     {
         path:'/dashboard/admin/waiting-posts',
         exact:false,
@@ -149,6 +172,21 @@ const routes = [
         path:'/dashboard/admin/profile',
         exact:false,
         main:() => <AdminProfile/>
+    },
+    {
+        path:'/dashboard/admin/all-reviews',
+        exact:false,
+        main:() => <AllReview/>
+    },
+    {
+        path:'/dashboard/admin/my-posts',
+        exact:false,
+        main:() => <MyPosts/>
+    },
+    {
+        path:'/dashboard/admin/all-owners',
+        exact:false,
+        main:() => <AllOwnerManager/>
     },
     {
         path:'/dashboard/admin/chat',

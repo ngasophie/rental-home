@@ -4,6 +4,7 @@ import TopPage from './MainPageItems/TopPageItems/TopPage';
 import Footer from './MainPageItems/Footer/Footer';
 import FormChat from './MainPageItems/MiddlePageItems/FormChat';
 import {connect} from 'react-redux';
+import {getMessages} from './../../actions/post_action';
 import {Redirect} from 'react-router-dom';
 class Chat extends Component{
     constructor(props){
@@ -18,8 +19,6 @@ class Chat extends Component{
                 <TopPage></TopPage>
                 <div className="middle">
                     <div className="container">
-                       <Title></Title>
-                       <br></br>
                         <FormChat></FormChat>
                     </div>
                 </div>
@@ -27,10 +26,23 @@ class Chat extends Component{
             </div>
         );
     }
+    componentDidMount(){
+        const {owner} = this.props;
+        console.log(owner)
+        let owner_email = owner.email;
+        this.props.fetchChats({owner_email});
+    }
 }
 const mapStateToProps= state =>{
     return {
-        owner:state.owner
+        owner:state.owner,
     }
 }
-export default connect(mapStateToProps,null) (Chat);
+const mapDispatchToProps = (dispatch,props) =>{
+    return {
+        fetchChats :(data)=>{
+            dispatch(getMessages(data))
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps) (Chat);

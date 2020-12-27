@@ -17,7 +17,7 @@ class Review extends Component{
 
           <span className="name">{review.user_name}</span>
           <br/>
-          <span className="date-modified">{convertDate(review.created_at)}</span>
+          <span className="date-modified">{convertDate(review.created_at)}<br/></span>
           <div className="review-rate">
               <i className="fa fa-star" aria-hidden="true"></i>
               <i className="fa fa-star" aria-hidden="true"></i>
@@ -25,6 +25,7 @@ class Review extends Component{
               <i className="fa fa-star" aria-hidden="true"></i>
               <i className="fa fa-star" aria-hidden="true"></i>
           </div>
+        
           <p>{review.content} </p>
           </div>
       </div>

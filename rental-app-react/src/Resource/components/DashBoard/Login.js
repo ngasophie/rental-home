@@ -102,6 +102,9 @@ class Login extends Component{
                             <small className="password-error error-disable" >{this.state.passwordEr}</small>
                             <button type="submit" className="btn-submit mt-1">Login</button>
                         </form>
+                        <Link to='/dashboard/register' className= 'register-nav'>
+                            <span className='hight-light'>Don't have an account? Register</span>
+                            </Link>  
                     </div>
           </div>
     </div>

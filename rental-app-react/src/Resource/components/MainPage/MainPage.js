@@ -70,7 +70,8 @@ const mapDispatchToProps = (dispatch, props)=>{
         },
         fetchLocation:() =>{
             dispatch(actFetchLocationRequest());
-        }
+        },
+       
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps) (MainPage);

@@ -38,7 +38,6 @@ class OwnerPage extends Component{
         )
     }
     componentDidMount(){
-        console.log('chay')
         //  fetch data
         this.props.fetchAllOwners(1);
     }

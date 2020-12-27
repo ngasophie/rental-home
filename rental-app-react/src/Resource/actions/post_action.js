@@ -3,7 +3,6 @@ import callApi from './../utils/apiCaller';
 import callApiBackEnd from './../utils/apiCallBackend';
 import callApiDashboard from './../utils/apiDashboardCall';
 import postData from './../utils/apiPostFormData';
-
 export const addRenterRequest =  (renter) =>{
     return(dispatch) =>{
         return callApiBackEnd('api/all-renters/store','POST',{
@@ -63,6 +62,7 @@ export const editPost =  (formData,id) =>{
     console.log(id);
         return postData(`api/owner/edit-post/${id}`,'POST',formData).then(res=>{
             if(res){
+                console.log(res)
                 alert('Update post success');
             }
         })
@@ -83,4 +83,77 @@ export const actDeletePost = (id)=>{
         type: types.DELETE_POST,
         id
     }
+}
+export const filterRequest = (data) =>{
+    return (dispatch) =>{
+        return callApiBackEnd(`api/filter-posts`, 'POST', data).then(res=>{
+            console.log(res)
+            if(res){
+                dispatch(filterData(res.data.data,res.data.last_page));
+            }
+        })
+    }
+}
+export const filterData = (filterData,filterPage)=>{
+    return {
+        type: types.FILTER_POST,
+        filterData,
+        filterPage
+    }
+}
+// send message
+export const sendMessage = (data) =>{
+    return callApiBackEnd('api/postMessage','POST',data)
+    .then(res =>{
+        console.log(res);
+    }).catch(er =>{
+        console.log(er);
+    })
+}
+export const chats= (data)=>{
+    return{
+        type:types.CHATS,
+        data
+    }
+}
+export const getMessages=(data)=>{
+    console.log(data)
+    return (dispatch) =>{
+        return callApiBackEnd(`api/getMessages`, 'POST', data).then(res=>{
+            console.log(res)
+            if(res){
+                dispatch(getMessageReducer(res.data));
+            }
+        })
+    }
+}
+export const getMessageReducer=(data)=>{
+    return {
+        type:types.GET_MESSAGES,
+        getMessageReducer:data
+    }
+}
+export const getConversations=()=>{
+    return (dispatch) =>{
+        return callApiBackEnd(`api/getConversations`, 'POST', null).then(res=>{
+            console.log(res)
+            if(res){
+                dispatch(getConversationReducer(res.data));
+            }
+        })
+    }
+}
+export const getConversationReducer=(data)=>{
+    return {
+        type:types.GET_CONVERSATIONS,
+        getConversationReducer :data
+    }
+}
+export const review= (data)=>{
+    return callApiBackEnd(`api/review`, 'POST', data).then(res=>{
+        console.log(res)
+        if(res){
+           alert('your review is sent! your review need to be checked to display')
+        }
+    })
 }

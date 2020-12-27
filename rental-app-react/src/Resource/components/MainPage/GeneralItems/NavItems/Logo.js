@@ -12,7 +12,8 @@ class Logo extends Component{
     render(){
         return(
              <div className="nav-brand">
-                 <Link to ="/" className="text-gray">EA</Link>
+                 <Link to ="/" className="text-gray logo"><img className='img-logo' src="https://code-theme.com/html/findhouses/images/logo-gray.svg" alt=""/>
+EA </Link>
             </div>
            
         )

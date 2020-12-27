@@ -17,11 +17,16 @@ import {allPostManager,activePostManager,disablePostManager,waitingPostManager,
         lastActivePostManager,lastAllPostManager,lastDisablePostManager,lastWaitingPostManager
 } from './adminReducer/postManager';
 import recentPostManager from './adminReducer/recentPostManager';
+import allReview from './adminReducer/reviewManager';
+import allOwnerManager from './adminReducer/ownerManager';
 import {allPostPerOwner, activePostPerOwner, disablePostPerOwner,
     lastPageAllPostDashboard,
     lastPageActivePost,
     lastPageDisablePost
 } from './dashboardReducer/postPerOwner';
+import {filterPosts,filterPage} from './filter/filterPosts';
+import {messages,conversations} from './chats/chats';
+import ownerProfile from './profile/ownerProfile';
 const appReducers = combineReducers({
     recommendPosts,
     allPosts,
@@ -43,6 +48,7 @@ const appReducers = combineReducers({
     lastPageDisablePost,
     allPostManager,activePostManager,disablePostManager,waitingPostManager,
     lastActivePostManager,lastAllPostManager,lastDisablePostManager,lastWaitingPostManager,
-    summaryManager,recentPostManager
+    summaryManager,recentPostManager, allReview,allOwnerManager, filterPosts,filterPage,
+    messages,conversations,ownerProfile
 })
 export default appReducers;

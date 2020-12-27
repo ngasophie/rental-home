@@ -25,11 +25,12 @@ class DetailPage extends Component{
                 <ImageBox img = {post.images}></ImageBox>
                 <div className="container">
                     <div className="aside-left">
-                        <Title title = {post.title} location = {post.address.city} price={post.facilities.price} />
+                        <Title title = {post.title} location = {post.address.city} 
+                        price={post.facilities.price} />
                         <Description description= {post.description}></Description>
                         <Details value = {post}></Details>
                         <ReviewList value = {post.reviews}></ReviewList>
-                        <FormAddReview></FormAddReview>
+                        <FormAddReview post_id = {post.id}></FormAddReview>
                     </div>
                     <div className="aside-right">
                         {/*  xu li sau */}

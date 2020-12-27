@@ -6,18 +6,52 @@ export const allPostManager= (state = initialState, action)=>{
         case types.FETCH_ALL_POST_MANAGER:
             state = action.allPostManager;
             return state;
-        //  case types.DELETE_POST:
-        //     let id = action.id;
-        //     let index =state.findIndex((post)=>{
-        //         return post.id === id;
-        //     });
-        //     console.log(index)
-        //     if(index!=-1){
-        //         state.splice(index,1);
-        //         console.log(state)
-        //         return [...state]
-        //     }
-        //         return state;
+         case types.ACT_RECOMMEND_POST:
+            var id = action.id;
+            var index =state.findIndex((post)=>{
+                return post.id === id;
+            });
+            if(index!=-1){
+                state[index].isRecommended = 1;
+                console.log(state)
+                return [...state]
+            }
+            return state;
+
+         case types.ACT_NO_RECOMMEND_POST:
+             var id = action.id
+            var index =state.findIndex((post)=>{
+                return post.id === id;
+            });
+            if(index!=-1){
+                state[index].isRecommended = 0;
+                console.log(state)
+                return [...state]
+            }
+                return state;
+         case types.ACT_ACTIVE_POST:
+            var id = action.id;
+            var index =state.findIndex((post)=>{
+                return post.id === id;
+            });
+            if(index!=-1){
+                state[index].status = 1;
+                console.log(state)
+                return [...state]
+            }
+                return state;
+         case types.ACT_DISABLED_POST:
+            var id = action.id;
+            var index =state.findIndex((post)=>{
+                console.log(post)
+                return post.id === id;
+            });
+            if(index!=-1){
+                state[index].status = 0;
+                console.log(state)
+                return [...state]
+            }
+                return state;
         default: return state
     }
 }
@@ -38,18 +72,53 @@ export const activePostManager =(state = initialState, action)=>{
         case types.FETCH_ACTIVE_POST_MANAGER:
          state = action.activePostManager;
          return state;
-        //  case types.DELETE_POST:
-        //     let id = action.id;
-        //     let index =state.findIndex((post)=>{
-        //         return post.id === id;
-        //     });
-        //     console.log(index)
-        //     if(index!=-1){
-        //         state.splice(index,1);
-        //         console.log(state)
-        //         return [...state]
-        //     }
-        //         return state;
+         case types.ACT_RECOMMEND_POST:
+            var id = action.id;
+            var index =state.findIndex((post)=>{
+                return post.id === id;
+            });
+            if(index!=-1){
+                state[index].isRecommended = 1;
+                console.log(state)
+                return [...state]
+            }
+            return state;
+
+         case types.ACT_NO_RECOMMEND_POST:
+            var id = action.id
+            var index =state.findIndex((post)=>{
+                return post.id === id;
+            });
+            if(index!=-1){
+                state[index].isRecommended = 0;
+                console.log(state)
+                return [...state]
+            }
+                return state;
+         case types.ACT_ACTIVE_POST:
+            var id = action.id;
+            var index =state.findIndex((post)=>{
+                return post.id === id;
+            });
+            if(index!=-1){
+                state[index].status = 1;
+                console.log(state)
+                return [...state]
+            }
+                return state;
+         case types.ACT_DISABLED_POST:
+            var id = action.id;
+            var index =state.findIndex((post)=>{
+                console.log(post)
+                return post.id === id;
+            });
+            console.log(index)
+            if(index!=-1){
+                state[index].status = 0;
+                console.log(state)
+                return [...state]
+            }
+                return state;
         default: return state
     }
 }

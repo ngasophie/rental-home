@@ -3,6 +3,7 @@ import Nav from './Admin/MainPageItems/Nav';
 import routes from './../routers';
 import Login from './Admin/Login';
 import { connect } from 'react-redux';
+import {listenChatChannel} from './../utils/listenPusher';
 import {
   BrowserRouter as Router,
   Switch,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {updateProfileRequest} from './../../../../actions/dashboardAction/postAction';
 class FormProfile extends Component {
   constructor(props) {
     super(props);
@@ -21,14 +22,15 @@ class FormProfile extends Component {
         address: "",
         city: "",
         district: "",
-        img_src: "",
+        img_src: [],
         description: "",
         identification: "",
         phone_number: "",
       },
       idenEr: '',
       phoneEr: '',
-      img_name:""
+      img_name:"",
+      img_file:''
     }
   }
   handleEdit = (name, e) => {
@@ -111,11 +113,11 @@ class FormProfile extends Component {
   }
   onChange = (event) => {
     const target = event.target;
-    let { data , img_name} = this.state;
+    let { data , img_name,img_file} = this.state;
     console.log(target.type)
     if (target.type == 'file') {
-      data.img_src = event.target.files[0].name;
-      img_name=URL.createObjectURL(event.target.files[0])
+      img_name=URL.createObjectURL(event.target.files[0]);
+      data.img_src = event.target.files[0];
       this.setState({ data , img_name})
     }
     else if (event.target.name == 'city') {
@@ -174,7 +176,28 @@ class FormProfile extends Component {
     this.setState({ idenEr })
    }
    if(isPassed){
-     
+     let formData = new FormData();
+     if(data.img_src.length == 0){
+      formData.append('files[]',[]);
+      }
+      else{
+          formData.append('files[]', data.img_src, data.img_src.name);
+      }
+      console.log(data.img_src.name)
+
+        formData.append('name',data.name);
+        formData.append('email', data.email);
+        formData.append('address',data.address);
+        formData.append('city',data.city);
+        formData.append('district',data.district);
+        formData.append('description', data.description);
+        formData.append('identification', data.identification);
+        formData.append('phone_number', data.phone_number);
+        console.log(formData)
+        for (var value of formData.values()) {
+          console.log(value);
+       }
+        this.props.updateProfile(formData);
    }
   }
   render() {
@@ -399,4 +422,11 @@ const mapStateToProps = state => {
     summary: state.summaryPerOwner
   }
 }
-export default connect(mapStateToProps, null)(FormProfile);
+const mapDispatchToProps = (dispatch,props) =>{
+  return {
+    updateProfile:(data) =>{
+      dispatch(updateProfileRequest(data))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(FormProfile);

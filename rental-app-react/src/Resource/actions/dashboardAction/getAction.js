@@ -4,8 +4,14 @@ import * as types from './../../constants/actionTypes';
 export const userProfileRequest = () =>{
     return (dispatch) =>{
         return callApiBackend(`api/user-profile`,'GET',null).then(res=>{
-            console.log(res.data[0])
-            dispatch(actDispatchIdUser(res.data[0]))
+            console.log(res)
+            let convertData = {};
+            convertData = res.data[0];
+            console.log(convertData)
+            convertData.address = convertData.address.address;
+            convertData.city = res.data[1].city;
+            convertData.district = res.data[1].district;
+            dispatch(actDispatchIdUser(convertData))
         })
     }
 }
@@ -93,4 +99,12 @@ export const disablePostPerOwner = (disablePostPerOwner,lastPageDisablePost) =>{
         disablePostPerOwner,
         lastPageDisablePost
     }
+}
+export const seenNotice= ()=>{
+    return callApiBackend(`api/view-notice`, 'POST', null).then(res=>{
+        console.log(res)
+        if(res){
+            userProfileRequest();
+        }
+    })
 }

@@ -27,6 +27,16 @@ a{
     height: 50px;
    border-radius: 50%;
 }
+.avt-client{
+    width: 35px;
+    height: 35px;
+   border-radius: 50%;
+}
+.avt-client img{
+    width: 35px;
+    height: 35px;
+   border-radius: 50%;
+}
 #signIn:hover{
     background-color: transparent;
     padding: .5rem 1rem 1rem 1rem;
@@ -74,13 +84,17 @@ button{
 .card-list .card .details,.reviews{
    padding-left: 1rem;
 }
+.card-body{
+    margin: auto;
+}
 .card-list .card:hover{
     box-shadow: 0 0 11px rgba(33,33,33,.2); 
 
 }
  .card-title{
     font-size: 1.3rem;
-    color:#24355A
+    color:#24355A;
+    text-align: center;
 }
 .page-link{
     color:#767676
@@ -189,9 +203,14 @@ button{
 .reviews-box i{
    color:orange;
 }
-
+.review .review-rate{
+    position: absolute;
+    top:10px;
+    right:10px;
+}
 .review-rate{
    margin-bottom: .5rem;
+
 }
 .preview-images-zone {
     width: 100%;
@@ -290,6 +309,7 @@ button{
     color:#175d9e;
     font-size:1.2rem;
     font-weight: bold;
+    text-align: center;
 }
 .review .avt, .owner-infor .avt{
     width: 100px;
@@ -302,14 +322,15 @@ button{
 }
 .review {
     display:flex;
+    position:relative
 }
 
 .owner-infor .top{
     display: flex;
 }
-.owner-infor .name{
+/* .owner-infor .name{
     margin-left: 1rem;
-}
+} */
 .hover-mouse{
     cursor:pointer;
 }
@@ -345,4 +366,60 @@ button{
     color:#FFF;
     cursor: pointer;
     text-align: center!important;
+}
+.logo{
+    display:flex;
+}
+.img-logo{
+    width: 50px;
+    height:40px;
+    margin-right: 10px;
+}
+
+.nav .dropdown{
+    position:static;
+    border-radius: 50%;
+}
+.nav .dropdown > button{
+    width:50px;
+    height: 50px;
+    outline:none;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    padding: 0;
+}
+.rating-make{
+    color: orange;
+}
+.rating-btn{
+    border:none;
+    outline:none;
+    background-color: transparent;
+}
+.like{
+    font-size:1.8rem;
+    margin-right:1rem
+}
+.favoutite{
+    font-size:1.8rem;
+    margin-right:1rem
+}
+.btn-report{
+    width:100px;
+    height:35px;
+    background-color: red;;
+    color:#fff;
+    outline:none
+}
+.like-click{
+    color:#0069D9;
+}
+.favourite-click{
+    color:red;
+}
+button:disabled{
+    background-color: #bbb;
+}
+.card:hover{
+    cursor: pointer;
 }

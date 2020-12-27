@@ -5,6 +5,7 @@ import TableBordered from './MainPageItems/MiddlePageItems/TableBordered'
 import TopPage from './MainPageItems/TopPageItems/TopPage';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {listenChatChannel} from './../../utils/listenPusher';
 import { actFetchLocationRequest} from './../../actions/index';
 import {recentPostPerOwnerRequest, summaryPerOwnerRequest, userProfileRequest} from './../../actions/dashboardAction/getAction';
 import {
@@ -46,6 +47,8 @@ class MainPage extends Component{
         this.props.fetchRecentPostPerOwner();
         this.props.fetchSummaryPerOwner();
         this.props.fetchLocation();
+        // listenChatChannel();
+
     }
 }
 const mapStateToProps = state =>{

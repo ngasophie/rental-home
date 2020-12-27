@@ -3,6 +3,7 @@ import Nav from './DashBoard/MainPageItems/Nav';
 import Dashboard from './DashBoard/Dashboard'
 import routes from './../routers';
 import Login from './DashBoard/Login';
+import {listenChatChannel} from './../utils/listenPusher';
 import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,

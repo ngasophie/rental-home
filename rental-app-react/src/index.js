@@ -17,7 +17,8 @@ import './Resource/css/user.css'
 import './Resource/css/dashboard.css'
 import './Resource/css/responsive_dashboard.css'
 import './Resource/css/responsive.css';
-
+import './Resource/css/register.css';
+import './Resource/css/profile.css';
 // ..
 import {createStore, applyMiddleware} from 'redux';
 import appReducers from './Resource/reducers/index';

@@ -10,6 +10,8 @@ class CardItem extends Component{
       //  tuyen tu cardlist qua
       //  thay img sau
       const {card} = this.props;
+      if(!card) return '';
+      console.log(card)
       let {img_src } = this.props;
       img_src = img_src.concat('img_post');
 
@@ -21,27 +23,13 @@ class CardItem extends Component{
                               <div className="carousel-item active">
                                 <img className="d-block w-100" src={`${img_src}/${card.images[0].img_src}`}/>
                               </div>
-                              <div className="carousel-item">
-                                <img className="d-block w-100" src={`${img_src}/${card.images[1].img_src}`} alt="Second slide"/>
-                              </div>
-                              <div className="carousel-item">
-                                <img className="d-block w-100" src={`${img_src}/${card.images[2].img_src}`}alt="Third slide"/>
-                              </div>
                             </div>
                           </div>
                         <div className="card-body">
                           <h5 className="card-title">{card.title}</h5>
-                          <div className="reviews">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                              {card.reviews.length} reviews
-                          </div>
                           <div className="details">
-                              <div className="price"><i className="fas fa-dollar-sign"></i> {card.facilities.price} VND</div>
-                              <div className="area"><i className="fas fa-arrows-alt" aria-hidden="true"></i> {card.facilities.area} m<sup><small>2</small></sup></div>
+                              <div className="price"> <i className="fas fa-dollar-sign"></i> {card.facilities.price} VND</div>
+                              <div className="area"><i className="fa fa-object-group" aria-hidden="true"></i> {card.facilities.area} m<sup><small>2</small></sup></div>
                               <div className="date-modified"><i className="far fa-calendar-alt"></i> {convertDate(card.createdAt)}</div>
                               <div className="located"><i className="fas fa-location-arrow"></i> {card.address.city}</div>
                           </div>

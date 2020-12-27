@@ -51,11 +51,11 @@
 .details-page .container .title{
     color:black;
    font-size: 1.5rem;
-   margin-bottom: 2rem;
+   margin-bottom: 1rem;
    border-bottom: 5px solid #274ABB;
    display: block;
    width: 100px ;
-   margin-top: 2rem;
+   margin-top: 1rem;
 }
 .details-page .container .aside-left .details-box{
     min-height: 20vh;
@@ -98,11 +98,18 @@
 }
 
 .details-page .container .aside-right .owner-infor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 20vh;
     background-color: #FFF;
     padding: 2rem;
     box-shadow: 0 0 11px rgba(33,33,33,.2); 
     margin-top:15rem;
+}
+.details-page .container .aside-right .owner-infor .title{
+    width:120px;
 }
 .details-page .container .aside-right .owner-infor .infor {
     margin-top: 1rem;

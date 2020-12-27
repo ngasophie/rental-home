@@ -83,7 +83,7 @@ class Register extends Component{
         }
     }
     render(){
-        if(localStorage.getItem('register') == 'yes'){
+        if(sessionStorage.getItem('auth_token')){
             return <Redirect to='/login'  />
         }
         return(
@@ -104,7 +104,6 @@ class Register extends Component{
                     <input type="text" className="name" name="name" placeholder="User name" 
                     required 
                     onChange = {this.onChange}
-                    value = {this.state.name}
                     />
                     {/* <small className="name-error error-disable" >error</small> */}
                     <input type="email" className="email" name="email" placeholder="Email"  

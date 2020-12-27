@@ -97,3 +97,37 @@ export const waitingPostManager = (waitingPostManager,lastWaitingPostManager) =>
         lastWaitingPostManager
     }
 }
+// get all-review
+export const allReviewRequest = (page) =>{
+    return(dispatch) =>{
+        return callApiBackend(`api/admin/all-reviews?page=${page}`, 'GET', null).then(res=>{
+            console.log(res)
+            dispatch(allReviewManager(res.data.data,res.data.last_page));
+        })
+    }
+}
+//  dua sang reducer de luu vao store
+export const allReviewManager = (allReviewManager,lastReviewManager) =>{
+    return {
+        type:types.FETCH_ALL_REVIEW,
+        allReviewManager,
+        lastReviewManager
+    }
+}
+// get all-
+export const allOwnerManagerRequest = (page) =>{
+    return(dispatch) =>{
+        return callApiBackend(`api/admin/all-owners?page=${page}`, 'GET', null).then(res=>{
+            console.log(res)
+            dispatch(allOwnerManager(res.data.data,res.data.last_page));
+        })
+    }
+}
+//  dua sang reducer de luu vao store
+export const allOwnerManager = (allOwnerManager,lastOwnerManager) =>{
+    return {
+        type:types.FETCH_ALL_OWNER_MANAGER,
+        allOwnerManager,
+        lastOwnerManager
+    }
+}

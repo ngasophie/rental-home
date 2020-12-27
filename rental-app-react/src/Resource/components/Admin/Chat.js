@@ -5,6 +5,8 @@ import Footer from './MainPageItems/Footer/Footer';
 import FormChat from './MainPageItems/MiddlePageItems/FormChat';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {getConversations} from './../../actions/post_action';
+// import {getMessages}
 class Chat extends Component{
     constructor(props){
         super(props);
@@ -18,8 +20,6 @@ class Chat extends Component{
                 <TopPage></TopPage>
                 <div className="middle">
                     <div className="container">
-                       <Title></Title>
-                       <br></br>
                         <FormChat></FormChat>
                     </div>
                 </div>
@@ -27,10 +27,20 @@ class Chat extends Component{
             </div>
         );
     }
+    componentDidMount(){
+        this.props.fetchConversations();
+    }
 }
 const mapStateToProps= state =>{
     return {
         owner:state.owner
     }
 }
-export default connect(mapStateToProps,null) (Chat);
+const mapDispatchToProps = (dispatch,props) =>{
+    return {
+        fetchConversations:()=>{
+            dispatch(getConversations())
+        },
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps) (Chat);

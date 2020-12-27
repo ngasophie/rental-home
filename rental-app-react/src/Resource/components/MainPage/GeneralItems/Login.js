@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import callApiBackEnd from './../../../utils/apiCallBackend'
 import { validateEmail } from '../../../utils/validate';
 import * as Config from './../../../constants/Config';
+import { actDispatchIdUser } from '../../../actions/dashboardAction/getAction';
 import axios from 'axios';
 class Login extends Component{
     constructor(props){
@@ -41,6 +42,7 @@ class Login extends Component{
             data: {email,password},
             }).then(res=>{
                 if(res){
+                    this.props.dispatchIdUser(res.data.user);
                     sessionStorage.setItem('auth_token',res.data.access_token);
                     this.setState({
                         email:""
@@ -94,11 +96,11 @@ class Login extends Component{
          )
     }
 }
-// const mapDispatchToProps = (dispatch,props) =>{
-//     return {
-//         login:() =>{
-//             dispatch(LoginRequest)
-//         }
-//     }
-// }
-export default Login;
+const mapDispatchToProps = (dispatch, props) =>{
+    return{
+        dispatchIdUser:(owner) =>{
+            dispatch(actDispatchIdUser(owner))
+        }
+    };
+}
+export default connect(null,mapDispatchToProps) (Login);

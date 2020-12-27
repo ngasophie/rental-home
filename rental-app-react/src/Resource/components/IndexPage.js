@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import NavIndex from './MainPage/GeneralItems/Nav';
-import Footer from './MainPage/GeneralItems/Footer'
-import routes from './../routers'
+import Footer from './MainPage/GeneralItems/Footer';
+import {userProfileRequest} from './../actions/index';
+import {connect} from 'react-redux';
+import routes from './../routers';
+import {Redirect} from 'react-router-dom';
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,6 +16,7 @@ class IndexPage extends Component{
 
     }
     render(){
+     
         return(
             <div className="index-page">
                 <Router>
@@ -37,5 +41,17 @@ class IndexPage extends Component{
         }
         return <Switch>{result}</Switch>
     }    
+    componentDidMount(){
+      if(sessionStorage.getItem('auth_token')){
+        this.props.fetchUser()
+      }
+    }
 }
-export default IndexPage;
+const mapDispatchToProps=(dispatch,props)=>{
+  return {
+      fetchUser:()=>{
+        dispatch(userProfileRequest())
+    }
+  }
+}
+export default connect(null,mapDispatchToProps) (IndexPage);

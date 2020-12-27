@@ -53,6 +53,12 @@ const menus = [
     exact:false,
     icon:<i class="far fa-comment-alt"></i>
   },
+  {
+    name:' My posts',
+    to:'/dashboard/admin/my-posts',
+    exact:false,
+    icon:<i class="fas fa-globe" aria-hidden="true"></i>
+  },
 
   {
     name:' Chat',

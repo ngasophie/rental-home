@@ -4,7 +4,8 @@ import callApiBackend from './../utils/apiCallBackend';
 import callApiLocation from './../utils/apiLocationCaller';
 import * as Config from './../constants/Config';
 import callApiBackEnd from './../utils/apiCallBackend';
-
+import callApiDashboard from './../utils/apiDashboardCall';
+// import {userProfileRequest} from './dashboardAction/getAction';
 //  get data from api
 export const actFetchRecommendPostRequest = () =>{
     return(dispatch) =>{
@@ -91,6 +92,33 @@ export const fetchLocation= (location) =>{
     return{
         type:types.FETCH_LOCATION,
         location
+    }
+}
+export const userProfileRequest = () =>{
+    return (dispatch) =>{
+        return callApiBackend(`api/user-profile`,'GET',null).then(res=>{
+            dispatch(actDispatchIdUser(res.data[0]))
+        })
+    }
+}
+export const actDispatchIdUser = (owner) =>{
+    return {
+        type:types.FETCH_USER,
+        owner,
+    }
+}
+export const fetchOwnerProfile = (id) =>{
+    return(dispatch) =>{
+        return callApiBackend(`api/owner-profile/${id}`, 'GET', null).then(res=>{
+            dispatch(ownerProfile(res.data.data));
+        })
+    }
+}
+//  dua sang reducer de luu vao store
+export const ownerProfile = (ownerProfile) =>{
+    return {
+        type:types.FETCH_OWNER_PROFILE,
+        ownerProfile,
     }
 }
 
